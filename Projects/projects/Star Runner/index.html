@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Runner - Arcade Shooter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <div id="mainMenu" class="overlay active">
+            <div class="menu-content">
+                <h1>STAR RUNNER</h1>
+                <div class="menu-buttons">
+                    <button id="startBtn">START GAME</button>
+                    <button id="settingsBtn">SETTINGS</button>
+                    <button id="leaderboardBtn">HIGH SCORES</button>
+                </div>
+                <div class="high-score">High Score: <span id="displayHighScore">0</span></div>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <div id="gameHUD" class="hud">
+            <div class="hud-item">Score: <span id="scoreDisplay">0</span></div>
+            <div class="hud-item">Lives: <span id="livesDisplay">3</span></div>
+            <div class="hud-item">Level: <span id="levelDisplay">1</span></div>
+            <div class="hud-item">Power: <span id="powerDisplay">Normal</span></div>
+        </div>
+
+        <div id="pauseMenu" class="overlay">
+            <div class="menu-content">
+                <h2>PAUSED</h2>
+                <div class="menu-buttons">
+                    <button id="resumeBtn">RESUME</button>
+                    <button id="restartBtn">RESTART</button>
+                    <button id="mainMenuBtn">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameOverMenu" class="overlay">
+            <div class="menu-content">
+                <h2>GAME OVER</h2>
+                <div class="final-score">Final Score: <span id="finalScore">0</span></div>
+                <div class="new-high-score" id="newHighScore" style="display: none;">NEW HIGH SCORE!</div>
+                <div class="menu-buttons">
+                    <button id="playAgainBtn">PLAY AGAIN</button>
+                    <button id="backToMenuBtn">MAIN MENU</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="settingsMenu" class="overlay">
+            <div class="menu-content">
+                <h2>SETTINGS</h2>
+                <div class="settings-options">
+                    <div class="setting-item">
+                        <label>Sound Effects:</label>
+                        <input type="checkbox" id="soundToggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label>Music:</label>
+                        <input type="checkbox" id="musicToggle" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label>Difficulty:</label>
+                        <select id="difficultySelect">
+                            <option value="easy">Easy</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="menu-buttons">
+                    <button id="saveSettingsBtn">SAVE</button>
+                    <button id="cancelSettingsBtn">CANCEL</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="loadingScreen" class="overlay">
+            <div class="menu-content">
+                <h2>LOADING...</h2>
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loadingProgress"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
