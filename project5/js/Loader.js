@@ -1,11 +1,11 @@
-// Loader.js - مع Promises و Error Handling محسن
+
 export class Loader {
     static loadJSON(path) {
         return new Promise((resolve, reject) => {
-            // محاكاة تحميل async مع تأخير
+  
             setTimeout(() => {
                 try {
-                    // بيانات تجريبية مع مستويات مختلفة
+               
                     const levelData = {
                         level1: {
                             enemies: [
@@ -23,7 +23,7 @@ export class Loader {
                         }
                     };
                     
-                    // اختيار المستوى حسب المسار
+               
                     const level = path.includes('level1') ? levelData.level1 : levelData.level1;
                     
                     if (!level) {
@@ -34,7 +34,7 @@ export class Loader {
                 } catch (error) {
                     reject(new Error(`Failed to load level data: ${error.message}`));
                 }
-            }, Math.random() * 1000 + 500); // تأخير عشوائي للمحاكاة
+            }, Math.random() * 1000 + 500); 
         });
     }
 
@@ -42,7 +42,7 @@ export class Loader {
         const loadPromises = assetList.map(asset => {
             return new Promise((resolve, reject) => {
                 setTimeout(() => {
-                    if (Math.random() > 0.1) { // 90% نجاح
+                    if (Math.random() > 0.1) {
                         resolve({ name: asset, loaded: true });
                     } else {
                         reject(new Error(`Failed to load asset: ${asset}`));
@@ -65,4 +65,5 @@ export class Loader {
             throw new Error(`Asset loading failed: ${error.message}`);
         }
     }
+
 }
