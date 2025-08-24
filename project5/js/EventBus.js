@@ -1,4 +1,4 @@
-// EventBus.js
+
 export class EventBus {
     constructor() { 
         this.events = {}; 
@@ -13,4 +13,5 @@ export class EventBus {
         if (!this.events[event]) return;
         this.events[event].forEach(cb => cb(data));
     }
+
 }
