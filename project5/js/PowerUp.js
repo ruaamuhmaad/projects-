@@ -1,4 +1,4 @@
-// PowerUp.js - مع Closures للـ timed effects
+
 export class PowerUp {
     constructor(x, y) {
         this.x = x;
@@ -9,7 +9,7 @@ export class PowerUp {
         this.speed = 1;
         this.type = this.getRandomType();
         
-        // Closure للـ power-up timers
+      
         this.createTimedEffect = (duration, effectName, hud) => {
             let timeRemaining = duration;
             const originalPower = hud.power;
@@ -19,7 +19,7 @@ export class PowerUp {
                     hud.power = `${effectName} (${Math.ceil(timeRemaining/60)}s)`;
                     hud.updateDisplay();
                     timeRemaining--;
-                    setTimeout(timerFunction, 16.67); // ~60fps
+                    setTimeout(timerFunction, 16.67); 
                 } else {
                     hud.power = originalPower;
                     hud.updateDisplay();
@@ -38,7 +38,7 @@ export class PowerUp {
     update() {
         this.y += this.speed;
         if (this.y > 600) {
-            this.collected = true; // إزالة إذا خرج من الشاشة
+            this.collected = true; 
         }
     }
 
@@ -48,7 +48,7 @@ export class PowerUp {
         ctx.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
         ctx.fill();
         
-        // رسم الرمز
+    
         ctx.fillStyle = 'white';
         ctx.font = '12px Arial';
         ctx.textAlign = 'center';
@@ -99,4 +99,5 @@ export class PowerUp {
                this.y < obj.y + obj.height &&
                this.y + this.height > obj.y;
     }
+
 }
