@@ -1,4 +1,4 @@
-// Projectile.js
+
 export class Projectile {
     constructor(x, y) {
         this.x = x;
@@ -25,4 +25,5 @@ export class Projectile {
                this.y < obj.y + obj.height && 
                this.y + this.height > obj.y;
     }
+
 }
