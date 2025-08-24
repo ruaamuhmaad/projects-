@@ -1,4 +1,4 @@
-// HUD.js - مع localStorage محسن للإعدادات
+
 export class HUD {
     constructor(eventBus) {
         this.score = 0;
@@ -9,7 +9,7 @@ export class HUD {
         this.eventBus = eventBus;
         this.settings = this.loadSettings();
         
-        // تحديث العرض فوراً
+ 
         this.updateDisplay();
     }
 
@@ -74,6 +74,7 @@ export class HUD {
     }
 
     render(ctx) {
-        // لا حاجة لرسم في Canvas لأننا نستخدم HTML elements
+  
     }
+
 }
