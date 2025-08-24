@@ -1,4 +1,4 @@
-// Enemy.js - مع Inheritance
+
 export class GameObject {
     constructor(x, y, width, height) {
         this.x = x;
@@ -9,11 +9,11 @@ export class GameObject {
     }
 
     update() {
-        // Base update logic
+     
     }
 
     render(ctx) {
-        // Base render logic
+    
     }
 
     collidesWith(obj) {
@@ -33,23 +33,23 @@ export class Enemy extends GameObject {
 
     update() {
         this.y += this.speed;
-        // إزالة الأعداء إذا خرجوا من الشاشة
+    
         if (this.y > 600) {
             this.dead = true;
         }
     }
 
     render(ctx) {
-        // رسم عدو وردي دائري كما في الصورة
+    
         ctx.fillStyle = '#ff6b9d';
         ctx.beginPath();
         ctx.arc(this.x + this.width/2, this.y + this.height/2, this.width/2, 0, Math.PI * 2);
         ctx.fill();
 
-        // نقطة صغيرة في الوسط
         ctx.fillStyle = '#cc1744';
         ctx.beginPath();
         ctx.arc(this.x + this.width/2, this.y + this.height/2, 3, 0, Math.PI * 2);
         ctx.fill();
     }
+
 }
