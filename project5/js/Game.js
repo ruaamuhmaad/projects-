@@ -1,4 +1,4 @@
-// Game.js
+
 import { EventBus } from './EventBus.js';
 import { Player } from './Player.js';
 import { Enemy } from './Enemy.js';
@@ -23,7 +23,7 @@ export class Game {
         this.enemySpawnTimer = 0;
         this.powerUpSpawnTimer = 0;
 
-        // التحكم
+
         window.addEventListener('keydown', e => {
             this.keys[e.code] = true;
             if (e.code === 'Escape') {
@@ -32,10 +32,10 @@ export class Game {
         });
         window.addEventListener('keyup', e => this.keys[e.code] = false);
 
-        // الأحداث
+
         this.eventBus.subscribe('spawnPowerUp', (pu) => this.powerUps.push(pu));
 
-        // أزرار القوائم
+    
         this.setupMenuButtons();
     }
 
@@ -78,35 +78,34 @@ export class Game {
     }
 
     update() {
-        // تحديث اللاعب
+     
         this.player.update(this.keys, this.projectiles);
 
-        // تحديث الرصاصات
         this.projectiles.forEach(p => p.update());
 
-        // تحديث الأعداء
+     
         this.enemies.forEach(e => e.update());
 
-        // تحديث القوى
+  
         this.powerUps.forEach(pu => pu.update());
 
-        // إنشاء أعداء جدد
+  
         this.enemySpawnTimer++;
-        if (this.enemySpawnTimer > 180) { // كل 3 ثوانٍ تقريباً
+        if (this.enemySpawnTimer > 180) { 
             const x = Math.random() * (800 - 25);
             this.enemies.push(new Enemy(x, -25, this.eventBus));
             this.enemySpawnTimer = 0;
         }
 
-        // إنشاء قوى جديدة
+ 
         this.powerUpSpawnTimer++;
-        if (this.powerUpSpawnTimer > 600 && Math.random() < 0.3) { // كل 10 ثوانٍ، احتمال 30%
+        if (this.powerUpSpawnTimer > 600 && Math.random() < 0.3) { 
             const x = Math.random() * (800 - 20);
             this.powerUps.push(new PowerUp(x, -20));
             this.powerUpSpawnTimer = 0;
         }
 
-        // التصادمات: الرصاصات مع الأعداء
+
         this.projectiles.forEach(p => {
             this.enemies.forEach(e => {
                 if (!e.dead && p.collidesWith(e)) {
@@ -114,7 +113,7 @@ export class Game {
                     p.offScreen = true;
                     this.hud.addScore(100);
                     
-                    // فرصة لإنشاء قوة
+              
                     if (Math.random() < 0.3) {
                         this.powerUps.push(new PowerUp(e.x, e.y));
                     }
@@ -130,7 +129,6 @@ export class Game {
             }
         });
 
-        // التصادمات: اللاعب مع الأعداء
         this.enemies.forEach(e => {
             if (!e.dead && this.player.collidesWith(e)) {
                 if (this.player.takeDamage()) {
@@ -145,21 +143,21 @@ export class Game {
             }
         });
 
-        // تنظيف الكائنات الميتة
+  
         this.enemies = this.enemies.filter(e => !e.dead);
         this.projectiles = this.projectiles.filter(p => !p.offScreen);
         this.powerUps = this.powerUps.filter(pu => !pu.collected);
     }
 
     render() {
-        // مسح الشاشة
+
         this.ctx.fillStyle = 'rgba(2, 5, 8, 0.1)';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-        // رسم النجوم
+   
         this.renderStars();
 
-        // رسم جميع الكائنات
+ 
         this.player.render(this.ctx);
         this.projectiles.forEach(p => p.render(this.ctx));
         this.enemies.forEach(e => e.render(this.ctx));
@@ -227,7 +225,7 @@ export class Game {
     }
 
     saveSettings() {
-        // حفظ الإعدادات
+
         this.hideSettings();
     }
 
@@ -236,4 +234,5 @@ export class Game {
             overlay.classList.remove('active');
         });
     }
+
 }
